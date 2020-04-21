@@ -7,6 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import ColumnNumericTransformer from '../helpers/ColumnNumericTransformer';
 
 @Entity('transactions')
 class Transaction {
@@ -19,7 +20,7 @@ class Transaction {
   @Column()
   type: string;
 
-  @Column()
+  @Column('decimal', { scale: 2, transformer: new ColumnNumericTransformer() })
   value: number;
 
   @Column()
