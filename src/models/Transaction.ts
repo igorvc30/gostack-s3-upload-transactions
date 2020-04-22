@@ -8,6 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import ColumnNumericTransformer from '../helpers/ColumnNumericTransformer';
+import Category from './Category';
 
 @Entity('transactions')
 class Transaction {
@@ -23,13 +24,18 @@ class Transaction {
   @Column('decimal', { scale: 2, transformer: new ColumnNumericTransformer() })
   value: number;
 
+  @CreateDateColumn({ select: false })
   @Column()
   category_id: string;
 
-  @CreateDateColumn()
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
+
+  @CreateDateColumn({ select: false })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @CreateDateColumn({ select: false })
   updated_at: Date;
 }
 
