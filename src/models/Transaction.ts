@@ -28,14 +28,14 @@ class Transaction {
   @Column()
   category_id: string;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, category => category.transaction, { eager: true })
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
-  @CreateDateColumn({ select: false })
+  @CreateDateColumn()
   created_at: Date;
 
-  @CreateDateColumn({ select: false })
+  @UpdateDateColumn({ select: false })
   updated_at: Date;
 }
 
