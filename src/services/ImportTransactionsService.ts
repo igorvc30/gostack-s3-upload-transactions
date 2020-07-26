@@ -80,8 +80,6 @@ class ImportTransactionsService {
         ),
       })),
     );
-    console.log(finalCategories);
-    console.log(transactions);
 
     await transactionRepository.save(createdTransactions);
     await fs.promises.unlink(filePath);

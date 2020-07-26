@@ -41,7 +41,7 @@ transactionsRouter.delete('/:id', async (request, response) => {
 
 transactionsRouter.post(
   '/import',
-  upload.single('arquivo'),
+  upload.single('file'),
   async (request, response) => {
     const importService = new ImportTransactionsService();
     const transactions = await importService.execute({

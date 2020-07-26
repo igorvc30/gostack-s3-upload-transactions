@@ -40,7 +40,7 @@ class CreateTransactionService {
         title: category,
       },
     });
-    console.log(foundCategory);
+
     if (!foundCategory) {
       const newCategory = categoryRepository.create({
         title: category,
